@@ -10,6 +10,11 @@
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
   <script src="knjiznice/js/bootstrap.min.js"></script>
   <script src="knjiznice/js/koda.js"></script>
+  
+  <link rel="stylesheet" href="knjiznice/css/morris.css">
+  <script src="knjiznice/js/raphael-min.js"></script>
+  <script src="knjiznice/js/morris.min.js"></script>
+  
 </head>
 <body>
 
@@ -22,14 +27,14 @@
           <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
         </button>
         <!-- ZAČETEK: Ime vaše aplikacije -->
-        <a class="navbar-brand" href="index.html">{ime vaše aplikacije}</a>
+        <a class="navbar-brand" href="index.html">HITRA DIAGNOZA ZDRAVJA</a>
         <!-- KONEC: Ime vaše aplikacije -->
       </div>
       <div class="collapse navbar-collapse" id="menujska-vrstica">
         <ul class="nav navbar-nav">
           <li><a href="opis.html">Opis ideje</a></li>
           <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
-          <li><a href="#">Generiranje podatkov</a></li>
+          <li><a href="#" id="generator">Generiranje podatkov</a></li>
         </ul>
       </div>
     </div>
@@ -38,12 +43,157 @@
 
   <!-- ZAČETEK: Vsebina aplikacije -->
   <div class="container">
+    <div class="">
     <div class="row">
-      <div class="col-lg-12 text-center">
-        <p class="lead"><strong>TO-DO</strong>: Na tem mestu implementirajte vašo aplikacijo.</p>
+      
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-lg-8 col-md-8 col-sm-8 panel-title">Podatki <strong>generiranih bolnikov</strong>.</div>
+              <div class="col-lg-4 col-md-4 col-sm-4 dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Seznam bolnikov
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="seznamBolnikov"></ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel-body">
+            <span class="label label-default">Ime</span>
+            <input id="vrniIme" type="text" class="form-control input-mini" placeholder="France" disabled>
+            <span class="label label-default">Priimek</span>
+            <input id="vrniPriimek" type="text" class="form-control input-mini" placeholder="Sosedov" disabled>
+            <span class="label label-default">Datum Rojstva</span>
+            <input id="vrniDatum" type="text" class="form-control input-mini" placeholder="1957-03-10T09:08" disabled>
+            <span class="label label-default">EhrId</span>
+            <input id="vrniEhrId" type="text" class="form-control input-mini" placeholder="6417a237-b921-46bc-9c05-4db1dc3c1120" disabled>
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="label label-warning pull-left" style="margin-top:12px" id="generiraniSporocilo"></div>
+                <button type="button" id="hitraDiagnozaGenerirani" onclick="narediHitroDiagnozoZdravjaGeneriranih()" class="btn btn-info btn-xs pull-right" style="margin-top:12px">Naredi <b>hitro diagnozo zdravja</b></button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
       </div>
+      
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 panel-header">Rezultati hitre diagnoze zdravja</div>
+            </div>
+          </div>
+          <div class="panel-body" id="rezultatHitreDiagnoze">
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="row">
+      
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 panel-header">Rocni vnos EhrId</div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <span class="label label-default">EhrId</span>
+            <input id="vnesiEhrId" type="text" class="form-control input-mini" placeholder="6417a237-b921-46bc-9c05-4db1dc3c1120">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="label label-warning pull-left" style="margin-top:12px" id="poizvedbaSporocilo"></div>
+                <button type="button" onclick="narediPoizvedboPoEhrId()" class="btn btn-info btn-xs pull-right" style="margin-top:12px">Naredi <strong>poizvedbo</strong>.</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-8 col-md-8 col-sm-8 panel-header">Prikaz bonišnic in ordinacij v okolici.</div>
+                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="lokacija()">Moja lokacija</button>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body" id="location1">
+            <div id="map" style="height:300px" class="col-lg-12 col-md-12 col-sm-12"></div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="row">
+      
+      <div class="col-lg-6 col-md-6 col-sm-6">
+      
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-lg-8 col-md-8 col-sm-8 panel-title">Vnos podatkov <strong>novega bolnika</strong>.</div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <span class="label label-info">Ime</span>
+            <input id="vnesiIme" type="text" class="form-control input-mini" placeholder="France">
+            <span class="label label-info">Priimek</span>
+            <input id="vnesiPriimek" type="text" class="form-control input-mini" placeholder="Sosedov">
+            <span class="label label-info">Datum Rojstva</span>
+            <input id="vnesiDatum" type="text" class="form-control input-mini" placeholder="1957-03-10T09:08">
+            <span class="label label-info">Telesna visina</span>
+            <div class="input-group"><input id="vnesiTelesnoVisino" type="text" class="form-control input-mini" placeholder="180"><div class="input-group-addon">cm</div></div>
+            <span class="label label-info">Telesna teza</span>
+            <div class="input-group"><input id="vnesiTelesnoTeza" type="text" class="form-control input-mini" placeholder="70"><div class="input-group-addon">kg</div></div>
+            <span class="label label-info">Telesna temperatura</span>
+            <div class="input-group"><input id="vnesiTelesnoTemperaturo" type="text" class="form-control input-mini" placeholder="36.5"><div class="input-group-addon">°C</div></div>
+            <span class="label label-info">Nasicenost krvi s kisikom</span>
+            <div class="input-group"><input id="vnesiNasicenostKisika" type="text" class="form-control input-mini" placeholder="95"><div class="input-group-addon">%</div></div>
+            <span class="label label-info">Sistolicni krvni tlak</span>
+            <div class="input-group"><input id="vnesiSistolicni" type="text" class="form-control input-mini" placeholder="110"><div class="input-group-addon">mm Hg</div></div>
+            <span class="label label-info">Diastolicni krvni tlak</span>
+            <div class="input-group"><input id="vnesiDiastolicni" type="text" class="form-control input-mini" placeholder="90"><div class="input-group-addon">mm Hg</div></div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="label label-warning pull-left" style="margin-top:12px" id="vnosPodtakovSporocilo"></div>
+                <button type="button" id="hitraDiagnozaVneseni" onclick="narediHitroDiagnozoZdravjaVneseni()" class="btn btn-info btn-xs pull-right" style="margin-top:12px">Naredi <b>hitro diagnozo zdravja</b></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+      
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 panel-header">Informativni graf za <strong>predstavitev BMI</strong></div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div id="myfirstchart" style="height:260px"></div>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNKCrYSFusIm3D3pjNzd38ieNZ8z_3Awc&libraries=places"></script>
+
   <!-- KONEC: Vsebina aplikacije -->
 
 </body>

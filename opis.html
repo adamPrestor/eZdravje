@@ -22,7 +22,7 @@
           <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
         </button>
         <!-- ZAČETEK: Ime vaše aplikacije -->
-        <a class="navbar-brand" href="index.html">{ime vaše aplikacije}</a>
+        <a class="navbar-brand" href="index.html">HITRA DIAGNOZA ZDRAVJA</a>
         <!-- KONEC: Ime vaše aplikacije -->
       </div>
       <div class="collapse navbar-collapse" id="menujska-vrstica">
@@ -45,7 +45,9 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Opis ideje, ki jo aplikacija podpira -->
-            <p><strong>TO-DO</strong>: Na tem mestu je potrebno dodati <strong>osnovni opis ideje rešitve</strong> (kakšen je osnovni SCENARIJ UPORABE, KDO je ciljna publika, za kakšen NAMEN se aplikacija uporablja).</p><p class="text-muted">Opis naj ne bo daljši od 200 besed.</p>
+            <p> Aplikacija podpira <strong>hitro diagnozo zdravja</strong>. Prek enostavnih parametrov doloci, ali je oseba zdrava ali ne.
+            Če pride do spoznanja, da je uporabnik bolan, jo napoti v bolnišnico. Ponudi mu tudi opcijo, da si oseba preko zemljevida poišče bližnje bolnišnice oz. zdravniške
+            ordinacije. Aplikacija je namenjena osebam, ki bi se rade hitro prepričale, če morajo nujno k zdravniku ali ne.</p>
             <!-- KONEC: Opis ideje, ki jo aplikacija podpira -->
           </div>
         </div>
@@ -55,7 +57,9 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
-            <p><strong>TO-DO</strong>: Na tem mestu je navesti zunanji vir podatkov (URL naslov), na kakšen način ste ga uporabili (neposredni API klic, uvožena statična datoteka ipd.) in kaj je bil namen uporabe (kako se vključuje v osnovno idejo aplikacije).</p>
+            <!-- TO-DO: Ko bos uporabil api, si zapisi primer uporabe. Trenutno tega se nisi sposoben. Adam Prestor -->
+            <p> Za zunanji vir sem uporabil GoogleMapsAPI. Uporabil sem ga kot neposredni API klic. Namen uporabe je, da si lahko uporabnik v primeru negotovosti ali če
+            se znajde v neznanih krajih, prek zemljevida poišče bližnje bolnišnice (v polmeru 10km). </p>
             <!-- KONEC: Uporabljeni zunanji viri podatkov -->
           </div>
         </div>
@@ -65,7 +69,7 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Master/detail načrtovalski vzorec -->
-            <p><strong>TO-DO</strong>: Na tem mestu morate navesti uporabljen master/detail načrtovalski vzorec in na kakšen način ga nameravate uporabiti.</p>
+            <p> Ob izbiri določenega dela dropdown-a seznamBolnikov se nam posodobijo polja vrniIme, vrniPriimek, vrniDatum, vrniEhrId. </p>
             <!-- KONEC: Master/detail načrtovalski vzorec -->
           </div>
         </div>
@@ -75,7 +79,8 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
-            <p><strong>TO-DO</strong>: Na tem mestu je potrebno navesti uporabljeno tehniko vizualizacije podatkov (za pomoč lahko uporabite primer iz <a href="https://github.com/mbostock/d3/wiki/Gallery" target="_blank">D3.js galerije</a>) in zakaj je bila ta tehnika izbrana.</p>
+            <p> Kot tehniko vizualizacije podatkov sem uporabil knjižnico <a href="http://morrisjs.github.io/morris.js/" target="_blank">morris.js</a>, ker
+            je bila dokumentacija lahko dostopna, način uporabe enostaven in končni graf ustrezen. </p>
             <!-- KONEC: Uporabljeni zunanji viri podatkov -->
           </div>
         </div>
