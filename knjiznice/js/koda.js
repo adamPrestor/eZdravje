@@ -551,8 +551,8 @@ function zrisiGraf() {
         xLabels: 'teza',
         parseTime: false,
         hoverCallback: function(index, options, content, row) {
-            return "Visina: "+ row.x + " cm<br>ITM40: " + (row.y+row.z+row.y1+row.y2+row.y3) +" kg<br>ITM30: " + (row.z+row.y+row.y1+row.y2) +
-                            " kg<br>ITM25: "+ (row.z+row.y+row.y1) +" kg<br>Teza18: "+(row.y+row.z)+" kg<br>ITM15: "+row.y + " kg";
+            return "Visina: "+ row.x + " cm<br>BMI40: " + (row.y+row.z+row.y1+row.y2+row.y3) +" kg<br>BMI30: " + (row.z+row.y+row.y1+row.y2) +
+                            " kg<br>BMI25: "+ (row.z+row.y+row.y1) +" kg<br>BMI18: "+(row.y+row.z)+" kg<br>BMI15: "+row.y + " kg";
         },
         hideHover: true,
         // A list of names of data record attributes that contain y-values.
